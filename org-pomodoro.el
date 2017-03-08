@@ -41,7 +41,6 @@
 (require 'org-agenda)
 (require 'org-clock)
 (require 'org-timer)
-(require 'alert)
 
 ;;; Custom Variables
 
@@ -467,9 +466,8 @@ The argument STATE is optional.  The default state is `:pomodoro`."
   (org-agenda-maybe-redo))
 
 (defun org-pomodoro-notify (title message)
-  "Send a notification with TITLE and MESSAGE using `alert'."
-  (alert message :title title :category 'org-pomodoro))
-
+  "Send a notification with TITLE and MESSAGE using `notify-send'."
+  (call-process "notify-send" nil 0 nil title message))
 ;; Handlers for pomodoro events.
 
 (defun org-pomodoro-finished ()
